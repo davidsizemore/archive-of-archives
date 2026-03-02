@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive of Archives</title>
+    <meta
+      name="description"
+      content="A curated archive of useful links organized by category."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="aoa-nav" aria-label="Primary navigation">
+        <div class="aoa-nav-row">
+          <div class="aoa-nav-corner"></div>
+          <div class="aoa-nav-fill"></div>
+          <div class="aoa-nav-corner"></div>
+        </div>
+        <div class="aoa-nav-main">
+          <div class="aoa-nav-rail"></div>
+          <div class="aoa-nav-content">
+            <a class="aoa-brand" href="#site-footer">
+              <span>Archive of Archives</span>
+              <span class="aoa-brand-icon" aria-hidden="true"></span>
+            </a>
+            <nav class="aoa-filter-nav" aria-label="Archive filters">
+              <span class="aoa-filter-label">Filter:</span>
+              <div id="nav-filter-options" class="aoa-filter-options"></div>
+            </nav>
+          </div>
+          <div class="aoa-nav-rail"></div>
+        </div>
+        <div class="aoa-nav-row">
+          <div class="aoa-nav-corner"></div>
+          <div class="aoa-nav-fill"></div>
+          <div class="aoa-nav-corner"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <div id="cards-grid" class="cards-grid"></div>
+        <p id="empty-state" class="empty-state" hidden>
+          No links match your current filters.
+        </p>
+      </section>
+    </main>
+
+    <footer id="site-footer" class="site-footer">
+      <div class="container site-footer-content">
+        <span
+          class="site-footer-logo"
+          role="img"
+          aria-label="Archive of Archives logo"
+        ></span>
+        <p class="site-footer-text">
+          Archive of Archives is a curated collection of digital archives, developed and maintained by <a href="https://selfhelpartpublishingempire.com/" target="_blank" rel="noopener noreferrer">SHAPE</a>. All are welcome to contribute to the project. Archive submission guidelines can be found on <a href="https://github.com/" target="_blank">GitHub</a>.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="scripts/theme.js"></script>
+    <script type="module" src="scripts/archive.js"></script>
+  </body>
+</html>
