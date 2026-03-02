@@ -27,6 +27,8 @@ body {
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -344,11 +346,13 @@ main {
 
 .card-description-static {
   display: inline;
+  font-size: inherit;
 }
 
 .card-description-track {
   display: none;
   min-width: max-content;
+  font-size: inherit;
 }
 
 .archive-card.is-main-hovered .card-image {
@@ -491,6 +495,11 @@ main {
 
   .card-description {
     text-overflow: clip;
+  }
+
+  .card-description-static,
+  .card-description-track {
+    font-size: 10px;
   }
 
   .card-description-static {
