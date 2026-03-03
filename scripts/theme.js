@@ -1,16 +1,16 @@
 const THEME_PALETTES = [
-  { bg: "#12121a", text: "#f6f2d8" },
-  { bg: "#0f1a16", text: "#d7f7df" },
-  { bg: "#17131f", text: "#f3dfff" },
-  { bg: "#101722", text: "#dceeff" },
-  { bg: "#1a120f", text: "#ffe8d8" },
-  { bg: "#121712", text: "#e0f5d8" },
-  { bg: "#1a141a", text: "#ffdff4" },
-  { bg: "#0d1b1b", text: "#d7ffff" },
-  { bg: "#1a1710", text: "#fff1c9" },
-  { bg: "#12101a", text: "#e7dcff" },
-  { bg: "#19110f", text: "#ffdcca" },
-  { bg: "#10151a", text: "#d9f0ff" },
+  { bg: "#102415", text: "#ffe84a" }, // deep green + bright yellow
+  { bg: "#2b1a12", text: "#ff78c7" }, // dark brown + pink
+  { bg: "#23123b", text: "#8dff6a" }, // deep purple + vivid green
+  { bg: "#0d2236", text: "#ff8b3d" }, // navy + orange
+  { bg: "#3a1313", text: "#42f3ff" }, // oxblood + cyan
+  { bg: "#121f2d", text: "#ffd95e" }, // slate blue + warm yellow
+  { bg: "#1d2b11", text: "#ff9ecb" }, // olive + rose
+  { bg: "#25110f", text: "#79ffe0" }, // espresso + mint
+  { bg: "#1f1430", text: "#b7ff3c" }, // aubergine + lime
+  { bg: "#0f2a26", text: "#ff9d66" }, // teal + apricot
+  { bg: "#2f1e0f", text: "#7fe9ff" }, // umber + sky
+  { bg: "#161616", text: "#88ffd3" }, // charcoal + neon mint
 ];
 
 const LAST_THEME_INDEX_KEY = "aoa-last-theme-index";
@@ -59,7 +59,7 @@ function applyTheme() {
   root.style.setProperty("--text", palette.text);
   root.style.setProperty("--text-muted", palette.text);
   root.style.setProperty("--border", palette.text);
-  root.style.setProperty("--overlay", hexToRgba(palette.text, 0.24));
+  root.style.setProperty("--overlay", hexToRgba(palette.text, 0.22));
 }
 
 applyTheme();

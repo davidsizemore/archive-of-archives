@@ -1,0 +1,66 @@
+name: Validate Thumbnail Assets
+
+on:
+  pull_request:
+    paths:
+      - "images/thumbnails/**"
+      - ".github/workflows/thumbnail-size-check.yml"
+  workflow_dispatch:
+
+jobs:
+  check-thumbnail-assets:
+    name: Enforce thumbnail size and format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify thumbnail size and format
+        run: |
+          MAX_BYTES=409600
+          MAX_LABEL="400 KB"
+          ALLOWED_EXTENSIONS=("webp" "jpg" "jpeg" "png")
+          FAILED=0
+
+          shopt -s globstar nullglob
+          FILES=(images/thumbnails/**)
+
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "No thumbnail files found in images/thumbnails/. Skipping."
+            exit 0
+          fi
+
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              ext="${file##*.}"
+              ext="${ext,,}"
+              ext_ok=0
+              for allowed in "${ALLOWED_EXTENSIONS[@]}"; do
+                if [ "$ext" = "$allowed" ]; then
+                  ext_ok=1
+                  break
+                fi
+              done
+
+              if [ "$ext_ok" -ne 1 ]; then
+                echo "::error file=$file::Thumbnail extension .$ext is not allowed. Use .webp, .jpg, .jpeg, or .png."
+                FAILED=1
+              fi
+
+              size_bytes=$(wc -c < "$file")
+              if [ "$size_bytes" -gt "$MAX_BYTES" ]; then
+                echo "::error file=$file::Thumbnail is ${size_bytes} bytes (max ${MAX_LABEL})."
+                FAILED=1
+              else
+                echo "OK: $file (${size_bytes} bytes)"
+              fi
+            fi
+          done
+
+          if [ "$FAILED" -ne 0 ]; then
+            echo "One or more thumbnails violate size/format requirements."
+            exit 1
+          fi
+
+          echo "All thumbnails pass size and format requirements."

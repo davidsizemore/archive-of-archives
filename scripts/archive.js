@@ -3,6 +3,7 @@ import { ARCHIVE_ITEMS } from "../data/archive-items.js";
 const cardsGrid = document.querySelector("#cards-grid");
 const navFilterOptions = document.querySelector("#nav-filter-options");
 const emptyState = document.querySelector("#empty-state");
+const cardsSection = cardsGrid?.parentElement ?? null;
 
 const allCategories = Array.from(
   new Set(ARCHIVE_ITEMS.flatMap((item) => item.categories))
@@ -13,6 +14,95 @@ const CARD_STATUS = Object.freeze({
   ACTIVE: "ACTIVE",
   INACTIVE: "INACTIVE",
 });
+
+const cardsSentinel = document.createElement("div");
+cardsSentinel.className = "cards-sentinel";
+cardsSentinel.setAttribute("aria-hidden", "true");
+if (cardsSection) {
+  cardsSection.appendChild(cardsSentinel);
+}
+
+let filteredItemsCache = [];
+let renderedCount = 0;
+let cardsObserver = null;
+let marqueeRafId = 0;
+let marqueeListenersBound = false;
+
+function getResponsiveBatchSize() {
+  const viewportWidth = window.innerWidth;
+  if (viewportWidth < 700) {
+    return 6;
+  }
+
+  if (viewportWidth < 1280) {
+    return 12;
+  }
+
+  return 20;
+}
+
+function applyMobileMarqueeWindow() {
+  if (!cardsGrid) {
+    return;
+  }
+
+  const cards = cardsGrid.querySelectorAll(".archive-card");
+
+  if (window.innerWidth > 700) {
+    cards.forEach((card) => card.classList.remove("is-marquee-active"));
+    return;
+  }
+
+  const activeZoneTop = window.innerHeight / 6;
+  const activeZoneBottom = window.innerHeight * (5 / 6);
+  const viewportCenterY = window.innerHeight / 2;
+  const activeCandidates = [];
+
+  cards.forEach((card) => {
+    const rect = card.getBoundingClientRect();
+    const cardCenterY = rect.top + rect.height / 2;
+    const isInActiveZone =
+      cardCenterY >= activeZoneTop && cardCenterY <= activeZoneBottom;
+
+    card.classList.remove("is-marquee-active");
+
+    if (isInActiveZone) {
+      const distanceToViewportCenter = Math.abs(cardCenterY - viewportCenterY);
+      activeCandidates.push({ card, distanceToViewportCenter });
+    }
+  });
+
+  activeCandidates
+    .sort((a, b) => a.distanceToViewportCenter - b.distanceToViewportCenter)
+    .slice(0, 2)
+    .forEach((entry) => {
+      entry.card.classList.add("is-marquee-active");
+    });
+}
+
+function scheduleMobileMarqueeUpdate() {
+  if (marqueeRafId !== 0) {
+    return;
+  }
+
+  marqueeRafId = window.requestAnimationFrame(() => {
+    marqueeRafId = 0;
+    applyMobileMarqueeWindow();
+  });
+}
+
+function bindMobileMarqueeListeners() {
+  if (marqueeListenersBound) {
+    return;
+  }
+
+  marqueeListenersBound = true;
+  window.addEventListener("scroll", scheduleMobileMarqueeUpdate, {
+    passive: true,
+  });
+  window.addEventListener("resize", scheduleMobileMarqueeUpdate);
+  window.addEventListener("orientationchange", scheduleMobileMarqueeUpdate);
+}
 
 function getSelectedFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -149,6 +239,8 @@ function createCard(item) {
   mediaImage.className = "card-image";
   mediaImage.src = getThumbnailSrc(item);
   mediaImage.alt = item.title;
+  mediaImage.loading = "lazy";
+  mediaImage.decoding = "async";
   mediaLink.appendChild(mediaImage);
 
   const mediaOverlay = document.createElement("div");
@@ -219,15 +311,73 @@ function getFilteredItems() {
   );
 }
 
-function renderCards() {
-  const filteredItems = getFilteredItems();
-  cardsGrid.innerHTML = "";
+function renderNextBatch() {
+  const batchSize = getResponsiveBatchSize();
+  const nextItems = filteredItemsCache.slice(
+    renderedCount,
+    renderedCount + batchSize
+  );
 
-  filteredItems.forEach((item) => {
+  nextItems.forEach((item) => {
     cardsGrid.appendChild(createCard(item));
   });
 
-  emptyState.hidden = filteredItems.length !== 0;
+  renderedCount += nextItems.length;
+  const hasMore = renderedCount < filteredItemsCache.length;
+  cardsSentinel.hidden = !hasMore;
+
+  if (!hasMore && cardsObserver) {
+    cardsObserver.disconnect();
+  }
+
+  scheduleMobileMarqueeUpdate();
+}
+
+function setupLazyBatchLoading() {
+  if (cardsObserver) {
+    cardsObserver.disconnect();
+  }
+
+  if (!cardsSection) {
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    while (renderedCount < filteredItemsCache.length) {
+      renderNextBatch();
+    }
+    return;
+  }
+
+  if (filteredItemsCache.length <= renderedCount) {
+    cardsSentinel.hidden = true;
+    return;
+  }
+
+  cardsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          renderNextBatch();
+        }
+      });
+    },
+    { root: null, rootMargin: "220px 0px", threshold: 0 }
+  );
+
+  cardsObserver.observe(cardsSentinel);
+}
+
+function renderCards() {
+  filteredItemsCache = getFilteredItems();
+  renderedCount = 0;
+  cardsGrid.innerHTML = "";
+
+  renderNextBatch();
+  setupLazyBatchLoading();
+  scheduleMobileMarqueeUpdate();
+
+  emptyState.hidden = filteredItemsCache.length !== 0;
 }
 
 function renderFilters() {
@@ -265,5 +415,6 @@ function renderFilters() {
 }
 
 getSelectedFromUrl().forEach((category) => selectedCategories.add(category));
+bindMobileMarqueeListeners();
 renderFilters();
 renderCards();

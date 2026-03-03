@@ -1,30 +1,22 @@
 # Archive of Archives
 
-A simple, responsive archive website that curates outbound links to useful resources.
+An archive that curates outbound links to other archives. Submissions are welcome
 
-## Project scope (MVP)
-
-- One responsive archive page (`index.html`)
-- Reusable card layout rendered from a single hardcoded data source
-- Multi-select category filtering
-
-## Local development
-
-This project is static HTML/CSS/JS. You can open `index.html` directly in your
-browser, or run a local static server if you prefer.
-
-Example with Python:
-
-```bash
-python3 -m http.server 8080
-```
-
-Then visit `http://localhost:8080`.
-
-## How to add a new archive card
+## How to submit a new archive card
 
 1. Open `data/archive-items.js`.
-2. Add a new object to the `ARCHIVE_ITEMS` array:
+2. Add a new object to the `BASE_ARCHIVE_ITEMS` array, with the required card information.
+
+- `id` (string): unique kebab-case key, example `experimental-jetset-magazine`
+- `title` (string): short display title
+- `url` (string): full destination URL, must start with `https://`
+- `dateAdded` (string): date the card is added, in `YYYY-MM-DD` format
+- `description` (string): one concise sentence
+- `categories` (string array): at least one category filter label, using an existing label unless adding something completely unique
+- `thumbnail` (string): image path using local repo path (example: `/images/thumbnails/your-card-id.webp`)
+- `status` (string): set to `"active"` if the archive is active at the time of submission
+
+### Card template example
 
 ```js
 {
@@ -32,56 +24,42 @@ Then visit `http://localhost:8080`.
   title: "Resource title",
   url: "https://example.com",
   dateAdded: "2026-03-02",
-  description: "One concise sentence about why this resource is useful.",
+  description: "One concise sentence about this archive.",
   categories: ["Category One", "Category Two"],
-  thumbnail: "https://example.com/image.jpg",
+  thumbnail: "/images/thumbnails/unique-id.webp",
 }
 ```
 
-### Field conventions
+### Thumbnail requirements
 
-- `id`: lowercase kebab-case and unique across all cards
-- `title`: short and clear
-- `url`: full `https://` URL
-- `dateAdded`: date the card was added, using `YYYY-MM-DD`
-- `description`: one sentence, plain language
-- `categories`: 1-3 categories; reuse existing labels when possible
-- `thumbnail`: direct image URL used in the card preview panel
+- Max file size: `400 KB` per thumbnail
+- Allowed formats: `.webp`, `.jpg`, `.jpeg`, `.png`
+- Preferred format: `.webp` when possible
+- Recommended dimensions: `1200x1200` square source image
+- Store uploaded files in: `images/thumbnails/`
 
 ## Open-source contribution workflow
 
 1. Fork this repository on GitHub.
 2. Create a new branch (example: `add-my-resource-card`).
 3. Add one or more cards in `data/archive-items.js`.
-4. Confirm the site still loads and filters correctly.
-5. Open a pull request with a concise description of your additions.
+4. Add thumbnail files to `images/thumbnails/`.
+5. Keep each thumbnail at or under `400 KB`.
+6. Use only allowed thumbnail formats (`.webp`, `.jpg`, `.jpeg`, `.png`).
+7. Confirm the site still loads and filters correctly.
+8. Open a pull request with a concise description of your additions.
 
 ## Pull request checklist
 
 - [ ] Card IDs are unique and kebab-case
 - [ ] All URLs are valid and use HTTPS
 - [ ] `dateAdded` uses `YYYY-MM-DD` and reflects when the card was added
+- [ ] `thumbnail` points to a valid image (`/images/thumbnails/...`)
+- [ ] Thumbnail file size is `<= 400 KB`
+- [ ] Thumbnail file extension is `.webp`, `.jpg`, `.jpeg`, or `.png`
 - [ ] Descriptions are concise and clear
 - [ ] Categories are relevant and consistent
 - [ ] Archive page renders and filtering behaves as expected
 
-## Deploy to Hostinger (GitHub Actions)
-
-This repository includes `.github/workflows/deploy-hostinger.yml`.
-
-- It runs on pushes to `main` (including when a PR is merged).
-- It deploys site files to Hostinger over FTPS.
-
-### Required GitHub repository secrets
-
-Add these in GitHub -> Settings -> Secrets and variables -> Actions:
-
-- `HOSTINGER_FTP_SERVER` (example: `ftp.yourdomain.com`)
-- `HOSTINGER_FTP_USERNAME`
-- `HOSTINGER_FTP_PASSWORD`
-- `HOSTINGER_SERVER_DIR` (example: `/public_html/`)
-
-### Notes
-
-- If your Hostinger plan requires plain FTP instead of FTPS, change `protocol: ftps` to `protocol: ftp` in the workflow.
-- If your default branch is not `main`, update the workflow trigger branch accordingly.
+Note: PRs automatically run a GitHub Action that fails if any file in
+`images/thumbnails/` is over `400 KB` or uses a disallowed file extension.
