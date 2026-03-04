@@ -2,12 +2,15 @@ import { ARCHIVE_ITEMS } from "../data/archive-items.js";
 
 const cardsGrid = document.querySelector("#cards-grid");
 const navFilterOptions = document.querySelector("#nav-filter-options");
+const navFilterBar = document.querySelector(".aoa-filter-nav");
 const emptyState = document.querySelector("#empty-state");
 const cardsSection = cardsGrid?.parentElement ?? null;
 
 const allCategories = Array.from(
   new Set(ARCHIVE_ITEMS.flatMap((item) => item.categories))
 ).sort((a, b) => a.localeCompare(b));
+const RANDOMIZED_ARCHIVE_ITEMS = getWeightedRandomizedItems(ARCHIVE_ITEMS);
+const HAS_ARCHIVES = RANDOMIZED_ARCHIVE_ITEMS.length > 0;
 
 const selectedCategories = new Set();
 const CARD_STATUS = Object.freeze({
@@ -39,6 +42,31 @@ function getResponsiveBatchSize() {
   }
 
   return 20;
+}
+
+function shuffleItems(items) {
+  const shuffled = [...items];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[i]];
+  }
+  return shuffled;
+}
+
+function getWeightedRandomizedItems(items) {
+  const topArchives = [];
+  const otherArchives = [];
+
+  items.forEach((item) => {
+    if (item.isTopArchive === true) {
+      topArchives.push(item);
+      return;
+    }
+
+    otherArchives.push(item);
+  });
+
+  return [...shuffleItems(topArchives), ...shuffleItems(otherArchives)];
 }
 
 function applyMobileMarqueeWindow() {
@@ -143,11 +171,7 @@ function formatDisplayUrl(url) {
 }
 
 function getThumbnailSrc(item) {
-  if (item.thumbnail) {
-    return item.thumbnail;
-  }
-
-  return `https://picsum.photos/seed/${encodeURIComponent(item.id)}/700/700`;
+  return String(item.thumbnail ?? "");
 }
 
 function getCardStatus(item) {
@@ -175,6 +199,69 @@ function formatAddedDate(dateAdded) {
   return parsed.toISOString().slice(0, 10);
 }
 
+function formatArchiveDescription(value) {
+  const normalized = String(value ?? "").trim();
+  if (!normalized) {
+    return "IS AN ARCHIVE.";
+  }
+
+  const startsWithIs = /^is\b/i.test(normalized);
+  const withPrefix = startsWithIs ? normalized : `is ${normalized}`;
+  return withPrefix.toUpperCase();
+}
+
+function getArchiveName(item) {
+  return String(item.archiveName ?? "UNTITLED ARCHIVE").toUpperCase();
+}
+
+function getArchiveLabel(item) {
+  return String(item.archiveName ?? "Untitled archive");
+}
+
+function getArchiveDescription(item) {
+  return formatArchiveDescription(item.archiveDescription);
+}
+
+function getTypeOfSite(item) {
+  return String(item.typeOfSite ?? "website").toUpperCase();
+}
+
+function getCategoryMetaText(item) {
+  if (!Array.isArray(item.categories) || item.categories.length === 0) {
+    return "UNCATEGORIZED";
+  }
+
+  return item.categories
+    .map((category) => String(category).trim())
+    .filter(Boolean)
+    .join(" • ")
+    .toUpperCase();
+}
+
+function createBottomDescriptionChunk(item, includeBullet = false) {
+  const chunk = document.createElement("span");
+  chunk.className = "card-description-chunk";
+
+  const name = document.createElement("span");
+  name.className = "card-description-name";
+  name.textContent = getArchiveName(item);
+
+  const description = document.createElement("span");
+  description.className = "card-description-archive-description";
+  description.textContent = ` ${getArchiveDescription(item)}`;
+
+  chunk.append(name, description);
+
+  if (includeBullet) {
+    const bullet = document.createElement("span");
+    bullet.className = "card-description-bullet";
+    bullet.textContent = " • ";
+    chunk.appendChild(bullet);
+  }
+
+  return chunk;
+}
+
 function createCard(item) {
   const article = document.createElement("article");
   article.className = "archive-card";
@@ -189,7 +276,7 @@ function createCard(item) {
   topMeta.className = "card-meta-row";
   const topMetaText = document.createElement("p");
   topMetaText.className = "card-meta-text";
-  topMetaText.textContent = item.categories.slice(0, 3).join(" • ").toUpperCase();
+  topMetaText.textContent = getCategoryMetaText(item);
   topMeta.appendChild(topMetaText);
 
   const topCornerRight = document.createElement("div");
@@ -233,12 +320,12 @@ function createCard(item) {
   mediaLink.href = item.url;
   mediaLink.target = "_blank";
   mediaLink.rel = "noopener noreferrer";
-  mediaLink.setAttribute("aria-label", `${item.title} (opens in new tab)`);
+  mediaLink.setAttribute("aria-label", `${getArchiveLabel(item)} (opens in new tab)`);
 
   const mediaImage = document.createElement("img");
   mediaImage.className = "card-image";
   mediaImage.src = getThumbnailSrc(item);
-  mediaImage.alt = item.title;
+  mediaImage.alt = getArchiveLabel(item);
   mediaImage.loading = "lazy";
   mediaImage.decoding = "async";
   mediaLink.appendChild(mediaImage);
@@ -252,7 +339,7 @@ function createCard(item) {
 
   const rightRailType = document.createElement("span");
   rightRailType.className = "card-rail-text";
-  rightRailType.textContent = "WEBSITE";
+  rightRailType.textContent = getTypeOfSite(item);
 
   const rightRailUrl = document.createElement("span");
   rightRailUrl.className = "card-rail-text card-rail-url";
@@ -275,20 +362,14 @@ function createCard(item) {
   bottomMetaText.className = "card-description";
   const bottomMetaStatic = document.createElement("span");
   bottomMetaStatic.className = "card-description-static";
-  bottomMetaStatic.textContent = item.description;
+  bottomMetaStatic.appendChild(createBottomDescriptionChunk(item, false));
 
   const bottomMetaTrack = document.createElement("span");
   bottomMetaTrack.className = "card-description-track";
-
-  const loopText = `${item.description} \u2022 `;
-
-  const bottomMetaLoopA = document.createElement("span");
-  bottomMetaLoopA.textContent = loopText;
-
-  const bottomMetaLoopB = document.createElement("span");
-  bottomMetaLoopB.textContent = loopText;
-
-  bottomMetaTrack.append(bottomMetaLoopA, bottomMetaLoopB);
+  bottomMetaTrack.append(
+    createBottomDescriptionChunk(item, true),
+    createBottomDescriptionChunk(item, true)
+  );
   bottomMetaText.append(bottomMetaStatic, bottomMetaTrack);
   bottomMeta.appendChild(bottomMetaText);
 
@@ -303,10 +384,10 @@ function createCard(item) {
 
 function getFilteredItems() {
   if (selectedCategories.size === 0) {
-    return ARCHIVE_ITEMS;
+    return RANDOMIZED_ARCHIVE_ITEMS;
   }
 
-  return ARCHIVE_ITEMS.filter((item) =>
+  return RANDOMIZED_ARCHIVE_ITEMS.filter((item) =>
     item.categories.some((category) => selectedCategories.has(category))
   );
 }
@@ -378,13 +459,22 @@ function renderCards() {
   scheduleMobileMarqueeUpdate();
 
   emptyState.hidden = filteredItemsCache.length !== 0;
+  emptyState.textContent = HAS_ARCHIVES
+    ? "No links match your current filters."
+    : "No archives yet. Add cards to data/archive-items.js.";
 }
 
 function renderFilters() {
-  if (!navFilterOptions) {
+  if (!navFilterOptions || !navFilterBar) {
     return;
   }
 
+  if (!HAS_ARCHIVES || allCategories.length === 0) {
+    navFilterBar.hidden = true;
+    return;
+  }
+
+  navFilterBar.hidden = false;
   navFilterOptions.innerHTML = "";
 
   allCategories.forEach((category) => {

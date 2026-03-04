@@ -334,6 +334,11 @@ main {
   position: absolute;
   inset: 0;
   background: var(--overlay);
+  transition: opacity 220ms ease;
+}
+
+.archive-card.is-main-hovered .card-media-overlay {
+  opacity: 0;
 }
 
 .card-description {
@@ -353,6 +358,10 @@ main {
   display: none;
   min-width: max-content;
   font-size: inherit;
+}
+
+.card-description-chunk {
+  display: inline;
 }
 
 .archive-card.is-main-hovered .card-image {
@@ -505,6 +514,10 @@ main {
   .card-description-static,
   .card-description-track {
     font-size: 10px;
+  }
+
+  .card-description-archive-description {
+    display: none;
   }
 
   .card-description-static {

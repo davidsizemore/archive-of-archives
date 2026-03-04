@@ -18,8 +18,8 @@ jobs:
 
       - name: Verify thumbnail size and format
         run: |
-          MAX_BYTES=409600
-          MAX_LABEL="400 KB"
+          MAX_BYTES=153600
+          MAX_LABEL="150 KB"
           ALLOWED_EXTENSIONS=("webp" "jpg" "jpeg" "png")
           FAILED=0
 
