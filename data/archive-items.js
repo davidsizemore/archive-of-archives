@@ -323,6 +323,42 @@ const BASE_ARCHIVE_ITEMS = [
     status: "active",
     thumbnail: "/images/thumbnails/aoa_arcade_1x.webp",
   },
+  {
+    id: "corita-art-center-collection",
+    archiveName: "Corita Art Center Collection",
+    archiveDescription:
+      "is an online collection of Corita Kent's serigraphs, watercolors, and graphic commissions",
+    url: "https://collection.corita.org/",
+    dateAdded: "2026-03-02",
+    categories: ["art", "design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_coritakent_1x.webp",
+  },
+  {
+    id: "dead-motels-usa",
+    archiveName: "Dead Motels USA",
+    archiveDescription:
+      "is an Instagram-based visual archive documenting motels across the United States",
+    url: "https://www.instagram.com/deadmotelsusa/",
+    dateAdded: "2026-03-02",
+    categories: ["design", "object"],
+    typeOfSite: "instagram",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_deadhotels_1x.webp",
+  },
+  {
+    id: "victorian-illustrated-shakespeare-archive",
+    archiveName: "Victorian Illustrated Shakespeare Archive",
+    archiveDescription:
+      "is a searchable archive of Victorian illustrations across Shakespeare editions",
+    url: "https://shakespeareillustration.org/",
+    dateAdded: "2026-03-02",
+    categories: ["art", "design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_shakespear_1x.webp",
+  },
 ];
 
 export const ARCHIVE_ITEMS = [...BASE_ARCHIVE_ITEMS];
