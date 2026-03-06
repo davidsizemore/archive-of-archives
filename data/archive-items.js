@@ -239,6 +239,90 @@ const BASE_ARCHIVE_ITEMS = [
     status: "active",
     thumbnail: "/images/thumbnails/aoa_solidarity_1x.webp",
   },
+  {
+    id: "marvel-superhero-lettering",
+    archiveName: "Marvel Superhero Lettering",
+    archiveDescription:
+      "is a visual survey of vintage Marvel superhero title lettering and logo treatments",
+    url: "https://reaganray.com/2021/04/06/marvel-lettering",
+    dateAdded: "2026-03-02",
+    categories: ["design", "art"],
+    typeOfSite: "blog",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_marvel_1x.webp",
+  },
+  {
+    id: "archives-design",
+    archiveName: "archives.design",
+    archiveDescription:
+      "is a curated archive of design-related items available on the Internet Archive",
+    url: "https://archives.design/",
+    dateAdded: "2026-03-02",
+    categories: ["design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_designarchive_1x.webp",
+  },
+  {
+    id: "radioshack-catalog-archive",
+    archiveName: "Radio Shack Catalog Archive",
+    archiveDescription:
+      "is a year-by-year archive of RadioShack catalogs",
+    url: "https://www.radioshackcatalogs.com/index.htm#main_catalogs",
+    dateAdded: "2026-03-02",
+    categories: ["technology", "object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_radioshack_1x.webp",
+  },
+  {
+    id: "matchbloc",
+    archiveName: "Matchbloc",
+    archiveDescription:
+      "is a collection of vintage matchbox label prints and publishing projects",
+    url: "https://matchbloc.com/",
+    dateAdded: "2026-03-02",
+    categories: ["design", "art", "object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_matchbook_1x.webp",
+  },
+  {
+    id: "zigsam-austrian-cigarette-collection",
+    archiveName: "ZIGSAM - The Austrian Cigarette Collection",
+    archiveDescription:
+      "is a visual collection documenting Austrian cigarette packaging and ephemera",
+    url: "https://www.zigsam.at/index.html",
+    dateAdded: "2026-03-02",
+    categories: ["object", "design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_cigarettes_1x.webp",
+  },
+  {
+    id: "digitaltmuseum-tumvante",
+    archiveName: "DigitaltMuseum - Tumvante",
+    archiveDescription:
+      "is a searchable museum listing for mitten artifacts and related records",
+    url: "https://digitaltmuseum.se/search?descname=Tumvante&o=0&n=224",
+    dateAdded: "2026-03-02",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_mittens_1x.webp",
+  },
+  {
+    id: "arcade-flyer-archive",
+    archiveName: "The Arcade Flyer Archive",
+    archiveDescription:
+      "is a digital repository of arcade, pinball, and video game promotional flyers",
+    url: "https://flyers.arcade-museum.com/",
+    dateAdded: "2026-03-02",
+    categories: ["design", "technology"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_arcade_1x.webp",
+  },
 ];
 
 export const ARCHIVE_ITEMS = [...BASE_ARCHIVE_ITEMS];
