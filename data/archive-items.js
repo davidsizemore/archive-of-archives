@@ -362,7 +362,7 @@ const BASE_ARCHIVE_ITEMS = [
   {
     id: "winamp-skin-museum",
     archiveName: "Winamp Skin Museum",
-    archiveDescription: "a fast, searchable, and shareable interface for the collection of Winamp Skins amassed on the Internet Archive.",
+    archiveDescription: "is a fast, searchable, and shareable interface for the collection of Winamp Skins amassed on the Internet Archive.",
     url: "https://skins.webamp.org/",
     dateAdded: "2026-03-09",
     categories: ["technology", "design"],
