@@ -359,6 +359,17 @@ const BASE_ARCHIVE_ITEMS = [
     status: "active",
     thumbnail: "/images/thumbnails/aoa_shakespear_1x.webp",
   },
+  {
+    id: "winamp-skin-museum",
+    archiveName: "Winamp Skin Museum",
+    archiveDescription: "a fast, searchable, and shareable interface for the collection of Winamp Skins amassed on the Internet Archive.",
+    url: "https://skins.webamp.org/",
+    dateAdded: "2026-03-09",
+    categories: ["technology", "design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_winamp_1x.webp"
+  }
 ];
 
 export const ARCHIVE_ITEMS = [...BASE_ARCHIVE_ITEMS];
