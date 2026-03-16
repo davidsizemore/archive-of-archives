@@ -369,6 +369,17 @@ const BASE_ARCHIVE_ITEMS = [
     typeOfSite: "website",
     status: "active",
     thumbnail: "/images/thumbnails/aoa_winamp_1x.webp"
+  },
+  {
+    id: "byte-visual-archive",
+    archiveName: "BYTE Visual Archive",
+    archiveDescription: "is a searchable visual interface for the entire collection of BYTE magazine",
+    url: "https://byte.tsundoku.io/",
+    dateAdded: "2026-03-13",
+    categories: ["technology"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_bytecover.webp"
   }
 ];
 
