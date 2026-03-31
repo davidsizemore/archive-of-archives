@@ -379,7 +379,103 @@ const BASE_ARCHIVE_ITEMS = [
     categories: ["technology"],
     typeOfSite: "website",
     status: "active",
-    thumbnail: "/images/thumbnails/aoa_bytecover.webp"
+    thumbnail: "/images/thumbnails/aoa_bytecover.webp",
+  },
+  {
+    id: "flickr-floppy-disk-labels",
+    archiveName: "Floppy Disk Labels",
+    archiveDescription:
+      "is a Flickr album documenting scanned 3.5 inch floppy disk labels",
+    url: "https://www.flickr.com/photos/textfiles/albums/72157708890692053/",
+    dateAdded: "2026-03-02",
+    categories: ["object", "technology"],
+    typeOfSite: "flickr",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_floppydisk_1x.webp",
+  },
+  {
+    id: "nps-history-brochures",
+    archiveName: "National Park Brochures Archive",
+    archiveDescription:
+      "is an educational archive of National Park brochures, bulletins, and trading cards",
+    url: "https://npshistory.com/brochures/index.htm",
+    dateAdded: "2026-03-02",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_nationalpark_1x.webp",
+  },
+  {
+    id: "record-label-logos",
+    archiveName: "Record Label Logos",
+    archiveDescription:
+      "is a curated visual collection of historical record label logos",
+    url: "https://reaganray.com/2018/04/27/record-logos.html",
+    dateAdded: "2026-03-02",
+    categories: ["design", "music"],
+    typeOfSite: "blog",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_recordlogos_1x.webp",
+  },
+  {
+    id: "flickr-floppy-sleeves",
+    archiveName: "Floppy Sleeves",
+    archiveDescription:
+      "is a Flickr album of scanned floppy disk sleeves",
+    url: "https://www.flickr.com/photos/textfiles/albums/72157682181421785/",
+    dateAdded: "2026-03-02",
+    categories: ["object", "technology"],
+    typeOfSite: "flickr",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_floppysleeves_1x.webp",
+  },
+  {
+    id: "independent-voices",
+    archiveName: "Independent Voices",
+    archiveDescription:
+      "is a collection of alternative press newspapers, magazines, and journals",
+    url: "https://www.jstor.org/site/reveal-digital/independent-voices/?so=item_title_str_asc&searchkey=1774963737277",
+    dateAdded: "2026-03-02",
+    categories: ["design", "object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_independentvoices_1x.webp",
+  },
+  {
+    id: "chinese-cigarette-museum",
+    archiveName: "Chinese Cigarette Museum",
+    archiveDescription:
+      "is a community catalog of cigarette pack designs and brand records",
+    url: "https://www.ciggies.app/",
+    dateAdded: "2026-03-02",
+    categories: ["object", "design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_chinesecigarettes_1x.webp",
+  },
+  {
+    id: "gramobal",
+    archiveName: "GRAMOBAL",
+    archiveDescription:
+      "is a tumblr archive sharing vinyl and record sleeve imagery",
+    url: "https://vinylsleeves.tumblr.com/",
+    dateAdded: "2026-03-02",
+    categories: ["music", "design", "object"],
+    typeOfSite: "tumblr",
+    status: "inactive",
+    thumbnail: "/images/thumbnails/aoa_czechrecords_1x.webp",
+  },
+  {
+    id: "dad-hats",
+    archiveName: "Dad Hats",
+    archiveDescription:
+      "is a personal archive project reflecting on a family hat collection",
+    url: "https://kwon.nyc/dad-hats/",
+    dateAdded: "2026-03-02",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_dadhats_1x.webp",
   }
 ];
 
