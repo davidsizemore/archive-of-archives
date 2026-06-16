@@ -1,0 +1,10 @@
+# Crawlers (e.g. Bluesky link cards) require the OG image URL to return
+# Content-Type under image/*. Ensure common image extensions map correctly.
+<IfModule mod_mime.c>
+  AddType image/jpeg .jpg .jpeg .jpe
+  AddType image/png .png
+  AddType image/webp .webp
+  AddType image/svg+xml .svg .svgz
+  AddType image/gif .gif
+  AddType image/x-icon .ico
+</IfModule>

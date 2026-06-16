@@ -476,7 +476,79 @@ const BASE_ARCHIVE_ITEMS = [
     typeOfSite: "website",
     status: "active",
     thumbnail: "/images/thumbnails/aoa_dadhats_1x.webp",
-  }
+  },
+  {
+    id: "aadam-jacobs-collection",
+    archiveName: "The Aadam Jacobs Collection",
+    archiveDescription:
+      "is an archive of more than 10,000 live concert recordings captured on tape",
+    url: "https://archive.org/details/@aadam_jacobs_collection",
+    dateAdded: "2026-06-16",
+    categories: ["music"],
+    typeOfSite: "internet archive",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa-concerts.webp",
+  },
+  {
+    id: "art-of-the-luggage-label",
+    archiveName: "Art of the Luggage Label",
+    archiveDescription:
+      "is a photostream of vintage hotel and travel luggage labels",
+    url: "https://www.flickr.com/photos/wavesjax/with/15627374178",
+    dateAdded: "2026-06-16",
+    categories: ["design", "object"],
+    typeOfSite: "flickr",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa-traveltags.webp",
+  },
+  {
+    id: "city-milk",
+    archiveName: "City Milk",
+    archiveDescription:
+      "is a research archive of Japanese milk bottle designs",
+    url: "https://www.citymilk.net/",
+    dateAdded: "2026-06-16",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa-milk.webp",
+  },
+  {
+    id: "vault-of-vhs",
+    archiveName: "Vault of VHS",
+    archiveDescription:
+      "is dedicated to the design of retail VHS packaging",
+    url: "https://vaultofvhs.tumblr.com/",
+    dateAdded: "2026-06-16",
+    categories: ["object"],
+    typeOfSite: "tumblr",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa-vhs.webp",
+  },
+  {
+    id: "tristan-davey-punch-card-archive",
+    archiveName: "Tristan Davey's Punch Card Archive",
+    archiveDescription:
+      "is a catalogue of punch cards from the era of early computing",
+    url: "https://punchcards.tristandavey.com/",
+    dateAdded: "2026-06-16",
+    categories: ["technology", "object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa-punchcards.webp",
+  },
+  {
+    id: "holotypic-occlupanid-research-group",
+    archiveName: "Holotypic Occlupanid Research Group",
+    archiveDescription:
+      "is a database classifying occlupanids, or plastic bread bag clips",
+    url: "https://www.horg.com/horg/",
+    dateAdded: "2026-06-16",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa-hort.webp",
+  },
 ];
 
 export const ARCHIVE_ITEMS = [...BASE_ARCHIVE_ITEMS];
