@@ -348,18 +348,6 @@ const BASE_ARCHIVE_ITEMS = [
     thumbnail: "/images/thumbnails/aoa_deadhotels_1x.webp",
   },
   {
-    id: "victorian-illustrated-shakespeare-archive",
-    archiveName: "Victorian Illustrated Shakespeare Archive",
-    archiveDescription:
-      "is a searchable archive of Victorian illustrations across Shakespeare editions",
-    url: "https://shakespeareillustration.org/",
-    dateAdded: "2026-03-02",
-    categories: ["art", "design"],
-    typeOfSite: "website",
-    status: "active",
-    thumbnail: "/images/thumbnails/aoa_shakespear_1x.webp",
-  },
-  {
     id: "winamp-skin-museum",
     archiveName: "Winamp Skin Museum",
     archiveDescription: "is a fast, searchable, and shareable interface for the collection of Winamp Skins amassed on the Internet Archive.",
