@@ -537,6 +537,66 @@ const BASE_ARCHIVE_ITEMS = [
     status: "active",
     thumbnail: "/images/thumbnails/aoa-hort.webp",
   },
+  {
+    id: "moist-towelettemuseum",
+    archiveName: "Moist Towelette Online Museum",
+    archiveDescription:
+      "documents moist towelettes from airlines and restaurants",
+    url: "https://moisttowelettemuseum.com/",
+    dateAdded: "2026-08-11",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_wipes_1x.webp",
+  },
+  {
+    id: "condiment-packet-archive",
+    archiveName: "Condiment Packet Archive",
+    archiveDescription:
+      "displays ketchup, mustard, and condiment packets from around the world",
+    url: "https://www.condimentpacket.com/",
+    dateAdded: "2026-08-11",
+    categories: ["object", "design"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_sauce_1x.webp",
+  },
+  {
+    id: "ice-cream-wrappers-archive",
+    archiveName: "Ice Cream Wrappers Archive",
+    archiveDescription:
+      "is a collection of ice cream wrappers from 20th-century Malaysia",
+    url: "https://search.malaysiadesignarchive.org/collections/ice-cream-wrappers/page/1/",
+    dateAdded: "2026-08-11",
+    categories: ["design", "object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_icecream_1x.webp",
+  },
+  {
+    id: "digital-museum-of-plugs-and-sockets",
+    archiveName: "Digital Museum of Plugs and Sockets",
+    archiveDescription:
+      "is a digital collection of electrical plugs and sockets",
+    url: "https://plugsocketmuseum.nl/index.html",
+    dateAdded: "2026-08-11",
+    categories: ["object", "technology"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_plugs_1x.webp",
+  },
+  {
+    id: "fictional-brands-archive",
+    archiveName: "Fictional Brands Archive",
+    archiveDescription:
+      "is a searchable archive of logos from film, television, and video games",
+    url: "https://fictionalbrandsarchive.com/",
+    dateAdded: "2026-08-11",
+    categories: ["design", "art"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_fake_logos_1x.webp",
+  },
 ];
 
 export const ARCHIVE_ITEMS = [...BASE_ARCHIVE_ITEMS];
