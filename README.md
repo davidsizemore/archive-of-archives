@@ -43,14 +43,13 @@ An archive that curates outbound links to other archives. Submissions are welcom
 
 ## Open-source contribution workflow
 
-1. Fork this repository on GitHub.
-2. Create a new branch (example: `add-my-resource-card`).
+1. Create a new branch and PR (example: `add-my-resource-card`).
 3. Add one or more cards in `data/archive-items.js`.
 4. Add thumbnail files to `images/thumbnails/`.
 5. Keep each thumbnail at or under `150 KB`.
 6. Use only allowed thumbnail formats (`.webp`, `.jpg`, `.jpeg`, `.png`).
 7. Confirm the site still loads and filters correctly.
-8. Open a pull request with a concise description of your additions.
+8. Open a merge request with a concise description of your additions.
 
 ## Pull request checklist
 
