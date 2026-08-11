@@ -43,7 +43,7 @@ An archive that curates outbound links to other archives. Submissions are welcom
 
 ## Open-source contribution workflow
 
-1. Create a new branch and PR (example: `add-my-resource-card`).
+1. Create a new branch and PR.
 3. Add one or more cards in `data/archive-items.js`.
 4. Add thumbnail files to `images/thumbnails/`.
 5. Keep each thumbnail at or under `150 KB`.
