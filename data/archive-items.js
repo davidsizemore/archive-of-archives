@@ -1,5 +1,17 @@
 const BASE_ARCHIVE_ITEMS = [
   {
+    id: "ramen-haus",
+    archiveName: "RamenHaus",
+    archiveDescription:
+      "home of rotating ramen",
+    url: "https://ramen.haus",
+    dateAdded: "2026-08-18",
+    categories: ["object"],
+    typeOfSite: "website",
+    status: "active",
+    thumbnail: "/images/thumbnails/aoa_ramen-haus_1x.webp",
+  },
+  {
     id: "identity-czech-graphic-design",
     archiveName: "Identity – The Story of Czech Graphic Design",
     archiveDescription:
